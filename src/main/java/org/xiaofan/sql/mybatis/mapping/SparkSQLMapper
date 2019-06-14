@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lixiang.ofrshare.mybatis.dao.SPARK_SQLMapper" >
+    <resultMap id="BaseResultMap" type="org.xiaofan.sql.spark.auto.TableModel.SparkSQL" >
+        <id column="APP_ID" property="APP_ID" jdbcType="DECIMAL" />
+        <id column="SQL_ID" property="SQL_ID" jdbcType="DECIMAL" />
+        <result column="DATA_NAME" property="DATA_NAME" jdbcType="VARCHAR" />
+        <result column="TYPE" property="TYPE" jdbcType="VARCHAR" />
+        <result column="TABLE_KEY" property="TABLE_KEY" jdbcType="VARCHAR" />
+        <result column="ROLE_ID" property="ROLE_ID" jdbcType="DECIMAL" />
+        <result column="MIN" property="MIN" jdbcType="DECIMAL" />
+        <result column="MAX" property="MAX" jdbcType="DECIMAL" />
+        <result column="NUM_PARTITION" property="NUM_PARTITION" jdbcType="DECIMAL" />
+        <result column="OUT_TYPE" property="OUT_TYPE" jdbcType="DECIMAL" />
+        <result column="OUT_DIR" property="OUT_DIR" jdbcType="VARCHAR" />
+        <result column="OUT_MODE" property="OUT_MODE" jdbcType="DECIMAL" />
+        <result column="ACTION1" property="ACTION1" jdbcType="DECIMAL" />
+        <result column="ACTION2" property="ACTION2" jdbcType="VARCHAR" />
+        <result column="ACTION3" property="ACTION3" jdbcType="VARCHAR" />
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="org.xiaofan.sql.spark.auto.TableModel.SparkSQL" extends="BaseResultMap" >
+        <result column="DATA" property="DATA" jdbcType="CLOB" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        APP_ID, SQL_ID, DATA_NAME, TYPE, TABLE_KEY, ROLE_ID, MIN, MAX, NUM_PARTITION, OUT_TYPE,
+        OUT_DIR, OUT_MODE, ACTION1, ACTION2, ACTION3
+    </sql>
+    <sql id="Blob_Column_List" >
+        DATA
+    </sql>
+    <select id="selectByPrimaryKey" resultType="org.xiaofan.sql.spark.auto.TableModel.SparkSQL" parameterType="java.lang.Long" >
+        select *
+        from SPARK_SQL
+        where APP_ID = #{APP_ID,jdbcType=DECIMAL}
+    </select>
+    <select id="selectByAppId" resultType="org.xiaofan.sql.spark.auto.TableModel.SparkSQL" parameterType="java.lang.Long" >
+        select *
+        from SPARK_SQL
+        where APP_ID = #{appId,jdbcType=DECIMAL}
+        order by sql_id
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from SPARK_SQL
+        where APP_ID = #{APP_ID,jdbcType=DECIMAL}
+    </delete>
+    <insert id="insert" parameterType="org.xiaofan.sql.spark.auto.TableModel.SparkSQL" >
+        insert into SPARK_SQL (APP_ID, SQL_ID, DATA,
+        DATA_NAME, TYPE, TABLE_KEY,
+        ROLE_ID, MIN, MAX,
+        NUM_PARTITION, OUT_TYPE, OUT_DIR,
+        OUT_MODE, ACTION1, ACTION2,
+        ACTION3)
+        values (#{APP_ID,jdbcType=DECIMAL}, #{SQL_ID,jdbcType=DECIMAL}, #{DATA,jdbcType=VARCHAR},
+        #{DATA_NAME,jdbcType=VARCHAR}, #{TYPE,jdbcType=VARCHAR}, #{TABLE_KEY,jdbcType=VARCHAR},
+        #{ROLE_ID,jdbcType=DECIMAL}, #{MIN,jdbcType=DECIMAL}, #{MAX,jdbcType=DECIMAL},
+        #{NUM_PARTITION,jdbcType=DECIMAL}, #{OUT_TYPE,jdbcType=DECIMAL}, #{OUT_DIR,jdbcType=DECIMAL},
+        #{OUT_MODE,jdbcType=DECIMAL}, #{ACTION1,jdbcType=DECIMAL}, #{ACTION2,jdbcType=VARCHAR},
+        #{ACTION3,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="org.xiaofan.sql.spark.auto.TableModel.SparkSQL" >
+        insert into SPARK_SQL
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="APP_ID != null" >
+                APP_ID,
+            </if>
+            <if test="SQL_ID != null" >
+                SQL_ID,
+            </if>
+            <if test="DATA != null" >
+                DATA,
+            </if>
+            <if test="DATA_NAME != null" >
+                DATA_NAME,
+            </if>
+            <if test="TYPE != null" >
+                TYPE,
+            </if>
+            <if test="TABLE_KEY != null" >
+                TABLE_KEY,
+            </if>
+            <if test="ROLE_ID != null" >
+                ROLE_ID,
+            </if>
+            <if test="MIN != null" >
+                MIN,
+            </if>
+            <if test="MAX != null" >
+                MAX,
+            </if>
+            <if test="NUM_PARTITION != null" >
+                NUM_PARTITION,
+            </if>
+            <if test="OUT_TYPE != null" >
+                OUT_TYPE,
+            </if>
+            <if test="OUT_DIR != null" >
+                OUT_DIR,
+            </if>
+            <if test="OUT_MODE != null" >
+                OUT_MODE,
+            </if>
+            <if test="ACTION1 != null" >
+                ACTION1,
+            </if>
+            <if test="ACTION2 != null" >
+                ACTION2,
+            </if>
+            <if test="ACTION3 != null" >
+                ACTION3,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="APP_ID != null" >
+                #{APP_ID,jdbcType=DECIMAL},
+            </if>
+            <if test="SQL_ID != null" >
+                #{SQL_ID,jdbcType=DECIMAL},
+            </if>
+            <if test="DATA != null" >
+                #{DATA,jdbcType=VARCHAR},
+            </if>
+            <if test="DATA_NAME != null" >
+                #{DATA_NAME,jdbcType=VARCHAR},
+            </if>
+            <if test="TYPE != null" >
+                #{TYPE,jdbcType=VARCHAR},
+            </if>
+            <if test="TABLE_KEY != null" >
+                #{TABLE_KEY,jdbcType=VARCHAR},
+            </if>
+            <if test="ROLE_ID != null" >
+                #{ROLE_ID,jdbcType=DECIMAL},
+            </if>
+            <if test="MIN != null" >
+                #{MIN,jdbcType=DECIMAL},
+            </if>
+            <if test="MAX != null" >
+                #{MAX,jdbcType=DECIMAL},
+            </if>
+            <if test="NUM_PARTITION != null" >
+                #{NUM_PARTITION,jdbcType=DECIMAL},
+            </if>
+            <if test="OUT_TYPE != null" >
+                #{OUT_TYPE,jdbcType=DECIMAL},
+            </if>
+            <if test="OUT_DIR != null" >
+                #{OUT_DIR,jdbcType=DECIMAL},
+            </if>
+            <if test="OUT_MODE != null" >
+                #{OUT_MODE,jdbcType=DECIMAL},
+            </if>
+            <if test="ACTION1 != null" >
+                #{ACTION1,jdbcType=DECIMAL},
+            </if>
+            <if test="ACTION2 != null" >
+                #{ACTION2,jdbcType=VARCHAR},
+            </if>
+            <if test="ACTION3 != null" >
+                #{ACTION3,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="org.xiaofan.sql.spark.auto.TableModel.SparkSQL" >
+        update SPARK_SQL
+        <set >
+            <if test="SQL_ID != null" >
+                SQL_ID = #{SQL_ID,jdbcType=DECIMAL},
+            </if>
+            <if test="DATA != null" >
+                DATA = #{DATA,jdbcType=VARCHAR},
+            </if>
+            <if test="DATA_NAME != null" >
+                DATA_NAME = #{DATA_NAME,jdbcType=VARCHAR},
+            </if>
+            <if test="TYPE != null" >
+                TYPE = #{TYPE,jdbcType=VARCHAR},
+            </if>
+            <if test="TABLE_KEY != null" >
+                TABLE_KEY = #{TABLE_KEY,jdbcType=VARCHAR},
+            </if>
+            <if test="ROLE_ID != null" >
+                ROLE_ID = #{ROLE_ID,jdbcType=DECIMAL},
+            </if>
+            <if test="MIN != null" >
+                MIN = #{MIN,jdbcType=DECIMAL},
+            </if>
+            <if test="MAX != null" >
+                MAX = #{MAX,jdbcType=DECIMAL},
+            </if>
+            <if test="NUM_PARTITION != null" >
+                NUM_PARTITION = #{NUM_PARTITION,jdbcType=DECIMAL},
+            </if>
+            <if test="OUT_TYPE != null" >
+                OUT_TYPE = #{OUT_TYPE,jdbcType=DECIMAL},
+            </if>
+            <if test="OUT_DIR != null" >
+                OUT_DIR = #{OUT_DIR,jdbcType=DECIMAL},
+            </if>
+            <if test="OUT_MODE != null" >
+                OUT_MODE = #{OUT_MODE,jdbcType=DECIMAL},
+            </if>
+            <if test="ACTION1 != null" >
+                ACTION1 = #{ACTION1,jdbcType=DECIMAL},
+            </if>
+            <if test="ACTION2 != null" >
+                ACTION2 = #{ACTION2,jdbcType=VARCHAR},
+            </if>
+            <if test="ACTION3 != null" >
+                ACTION3 = #{ACTION3,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where APP_ID = #{APP_ID,jdbcType=DECIMAL}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="org.xiaofan.sql.spark.auto.TableModel.SparkSQL" >
+        update SPARK_SQL
+        set SQL_ID = #{SQL_ID,jdbcType=DECIMAL},
+        DATA = #{DATA,jdbcType=VARCHAR},
+        DATA_NAME = #{DATA_NAME,jdbcType=VARCHAR},
+        TYPE = #{TYPE,jdbcType=VARCHAR},
+        TABLE_KEY = #{TABLE_KEY,jdbcType=VARCHAR},
+        ROLE_ID = #{ROLE_ID,jdbcType=DECIMAL},
+        MIN = #{MIN,jdbcType=DECIMAL},
+        MAX = #{MAX,jdbcType=DECIMAL},
+        NUM_PARTITION = #{NUM_PARTITION,jdbcType=DECIMAL},
+        OUT_TYPE = #{OUT_TYPE,jdbcType=DECIMAL},
+        OUT_DIR = #{OUT_DIR,jdbcType=DECIMAL},
+        OUT_MODE = #{OUT_MODE,jdbcType=DECIMAL},
+        ACTION1 = #{ACTION1,jdbcType=DECIMAL},
+        ACTION2 = #{ACTION2,jdbcType=VARCHAR},
+        ACTION3 = #{ACTION3,jdbcType=VARCHAR}
+        where APP_ID = #{APP_ID,jdbcType=DECIMAL}
+    </update>
+</mapper>

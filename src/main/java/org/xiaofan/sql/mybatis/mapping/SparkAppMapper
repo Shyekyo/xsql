@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lixiang.ofrshare.mybatis.dao.SPARK_APPMapper" >
+    <resultMap id="BaseResultMap" type="org.xiaofan.sql.spark.auto.TableModel.SparkApp" >
+        <result column="APP_ID" property="APP_ID" jdbcType="DECIMAL" />
+        <result column="APP_NAME" property="APP_NAME" jdbcType="VARCHAR" />
+        <result column="RUN_TYPE" property="RUN_TYPE" jdbcType="DECIMAL" />
+        <result column="START_TIME" property="START_TIME" jdbcType="VARCHAR" />
+        <result column="SPARK_CORE_NUMBER" property="SPARK_CORE_NUMBER" jdbcType="DECIMAL" />
+    </resultMap>
+    <select id="selectByAppId" resultType="org.xiaofan.sql.spark.auto.TableModel.SparkApp" parameterType="java.lang.Long" >
+        select *
+        from SPARK_APP
+        where APP_ID = #{appId,jdbcType=DECIMAL}
+        order by sql_id
+    </select>
+
+    <insert id="insert" parameterType="org.xiaofan.sql.spark.auto.TableModel.SparkApp" >
+        insert into SPARK_APP (APP_ID, APP_NAME, RUN_TYPE,
+        START_TIME, SPARK_CORE_NUMBER)
+        values (#{APP_ID,jdbcType=DECIMAL}, #{APP_NAME,jdbcType=VARCHAR}, #{RUN_TYPE,jdbcType=DECIMAL},
+        #{START_TIME,jdbcType=VARCHAR}, #{SPARK_CORE_NUMBER,jdbcType=DECIMAL})
+    </insert>
+    <insert id="insertSelective" parameterType="org.xiaofan.sql.spark.auto.TableModel.SparkApp" >
+        insert into SPARK_APP
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="APP_ID != null" >
+                APP_ID,
+            </if>
+            <if test="APP_NAME != null" >
+                APP_NAME,
+            </if>
+            <if test="RUN_TYPE != null" >
+                RUN_TYPE,
+            </if>
+            <if test="START_TIME != null" >
+                START_TIME,
+            </if>
+            <if test="SPARK_CORE_NUMBER != null" >
+                SPARK_CORE_NUMBER,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="APP_ID != null" >
+                #{APP_ID,jdbcType=DECIMAL},
+            </if>
+            <if test="APP_NAME != null" >
+                #{APP_NAME,jdbcType=VARCHAR},
+            </if>
+            <if test="RUN_TYPE != null" >
+                #{RUN_TYPE,jdbcType=DECIMAL},
+            </if>
+            <if test="START_TIME != null" >
+                #{START_TIME,jdbcType=VARCHAR},
+            </if>
+            <if test="SPARK_CORE_NUMBER != null" >
+                #{SPARK_CORE_NUMBER,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+</mapper>

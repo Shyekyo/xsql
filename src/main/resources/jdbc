@@ -1,0 +1,4 @@
+jdbc.password=
+jdbc.url=jdbc\:oracle\:thin\:@
+jdbc.driverClassName=
+jdbc.username=

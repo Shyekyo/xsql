@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lixiang.ofrshare.mybatis.dao.SPARK_ROLEMapper" >
+    <resultMap id="BaseResultMap" type="org.xiaofan.sql.spark.auto.TableModel.SparkRole" >
+        <id column="ROLE_ID" property="ROLE_ID" jdbcType="DECIMAL" />
+        <result column="USER_NAME" property="USER_NAME" jdbcType="VARCHAR" />
+        <result column="PASSWORD" property="PASSWORD" jdbcType="VARCHAR" />
+        <result column="URL" property="URL" jdbcType="VARCHAR" />
+        <result column="VERSION" property="VERSION" jdbcType="VARCHAR" />
+        <result column="IF_DEFAULT_ROLE" property="IF_DEFAULT_ROLE" jdbcType="DECIMAL" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        ROLE_ID, USER_NAME, PASSWORD, URL, VERSION, IF_DEFAULT_ROLE
+    </sql>
+    <select id="selectAll" resultType="org.xiaofan.sql.spark.auto.TableModel.SparkRole"  >
+        select *
+        from SPARK_ROLE
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        from SPARK_ROLE
+        where ROLE_ID = #{ROLE_ID,jdbcType=DECIMAL}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from SPARK_ROLE
+        where ROLE_ID = #{ROLE_ID,jdbcType=DECIMAL}
+    </delete>
+    <insert id="insert" parameterType="org.xiaofan.sql.spark.auto.TableModel.SparkRole" >
+        insert into SPARK_ROLE (ROLE_ID, USER_NAME, PASSWORD,
+        URL, VERSION, IF_DEFAULT_ROLE
+        )
+        values (#{ROLE_ID,jdbcType=DECIMAL}, #{USER_NAME,jdbcType=VARCHAR}, #{PASSWORD,jdbcType=VARCHAR},
+        #{URL,jdbcType=VARCHAR}, #{VERSION,jdbcType=VARCHAR}, #{IF_DEFAULT_ROLE,jdbcType=DECIMAL}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="org.xiaofan.sql.spark.auto.TableModel.SparkRole" >
+        insert into SPARK_ROLE
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="ROLE_ID != null" >
+                ROLE_ID,
+            </if>
+            <if test="USER_NAME != null" >
+                USER_NAME,
+            </if>
+            <if test="PASSWORD != null" >
+                PASSWORD,
+            </if>
+            <if test="URL != null" >
+                URL,
+            </if>
+            <if test="VERSION != null" >
+                VERSION,
+            </if>
+            <if test="IF_DEFAULT_ROLE != null" >
+                IF_DEFAULT_ROLE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="ROLE_ID != null" >
+                #{ROLE_ID,jdbcType=DECIMAL},
+            </if>
+            <if test="USER_NAME != null" >
+                #{USER_NAME,jdbcType=VARCHAR},
+            </if>
+            <if test="PASSWORD != null" >
+                #{PASSWORD,jdbcType=VARCHAR},
+            </if>
+            <if test="URL != null" >
+                #{URL,jdbcType=VARCHAR},
+            </if>
+            <if test="VERSION != null" >
+                #{VERSION,jdbcType=VARCHAR},
+            </if>
+            <if test="IF_DEFAULT_ROLE != null" >
+                #{IF_DEFAULT_ROLE,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="org.xiaofan.sql.spark.auto.TableModel.SparkRole" >
+        update SPARK_ROLE
+        <set >
+            <if test="USER_NAME != null" >
+                USER_NAME = #{USER_NAME,jdbcType=VARCHAR},
+            </if>
+            <if test="PASSWORD != null" >
+                PASSWORD = #{PASSWORD,jdbcType=VARCHAR},
+            </if>
+            <if test="URL != null" >
+                URL = #{URL,jdbcType=VARCHAR},
+            </if>
+            <if test="VERSION != null" >
+                VERSION = #{VERSION,jdbcType=VARCHAR},
+            </if>
+            <if test="IF_DEFAULT_ROLE != null" >
+                IF_DEFAULT_ROLE = #{IF_DEFAULT_ROLE,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where ROLE_ID = #{ROLE_ID,jdbcType=DECIMAL}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="org.xiaofan.sql.spark.auto.TableModel.SparkRole" >
+        update SPARK_ROLE
+        set USER_NAME = #{USER_NAME,jdbcType=VARCHAR},
+        PASSWORD = #{PASSWORD,jdbcType=VARCHAR},
+        URL = #{URL,jdbcType=VARCHAR},
+        VERSION = #{VERSION,jdbcType=VARCHAR},
+        IF_DEFAULT_ROLE = #{IF_DEFAULT_ROLE,jdbcType=DECIMAL}
+        where ROLE_ID = #{ROLE_ID,jdbcType=DECIMAL}
+    </update>
+</mapper>
