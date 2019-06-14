@@ -17,6 +17,7 @@ import java.util.List;
 
 /**
  * Created by zhangxiaofan on 2019/6/14.
+ * 自定义 UDF 函数
  */
 public class SparkConfUtil {
     public static void sqlContextInit(SparkSession sqlContext)

@@ -45,9 +45,9 @@ public class AutoSparkSql {
 
         //JdbcDialects.registerDialect(new OracleDialect());
 
-        SparkAppMapper sparkAppMapper = (SparkAppMapper)SpringContextTool.context.getBean("sPARK_APPMapper");
+        SparkAppMapper sparkAppMapper = (SparkAppMapper)SpringContextTool.context.getBean("sparkAppMapper");
 
-        SparkSQLMapper sparkSQLMapper = (SparkSQLMapper)SpringContextTool.context.getBean("sPARK_SQLMapper");
+        SparkSQLMapper sparkSQLMapper = (SparkSQLMapper)SpringContextTool.context.getBean("sparkSQLMapper");
 
         String url = ofrAllocationConf.IamUrl;
 
@@ -57,7 +57,7 @@ public class AutoSparkSql {
         options.put("driver", "oracle.jdbc.OracleDriver");
         Properties ps = new Properties();
         ps.putAll(options);
-
+        //根据appid找到对应的任务，sqlid是有顺序的
         List<SparkSQL> spark_sqls = sparkSQLMapper.selectByAppId(Long.valueOf(appId));
 
         SqlExcutor sqlExcutor = (SqlExcutor)SpringContextTool.context.getBean("sqlExcutor");

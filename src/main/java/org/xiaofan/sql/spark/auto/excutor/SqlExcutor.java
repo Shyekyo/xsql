@@ -42,10 +42,11 @@ public class SqlExcutor
     static Map<String, String> paras = new HashMap();
     SparkSession spark;
     Map<String, Dataset<Row>> dfMap = new HashMap();
-
+    //根据appid找到按照sqlid排序后找到一系列sql
     public void Excutor(List<SparkSQL> spark_sqls)
     {
         SparkRoleMapper sparkRoleMapper = (SparkRoleMapper)SpringContextTool.context.getBean("sparkRoleMapper");
+        //找到所有的用户
         List<SparkRole> roles = sparkRoleMapper.selectAll();
         rolesMap = new HashMap();
         for (SparkRole r : roles) {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="lixiang.ofrshare.mybatis.dao.SPARK_SQLMapper" >
+<mapper namespace="org.xiaofan.sql.spark.auto.TableModel.SparkSQL" >
     <resultMap id="BaseResultMap" type="org.xiaofan.sql.spark.auto.TableModel.SparkSQL" >
         <id column="APP_ID" property="APP_ID" jdbcType="DECIMAL" />
         <id column="SQL_ID" property="SQL_ID" jdbcType="DECIMAL" />
