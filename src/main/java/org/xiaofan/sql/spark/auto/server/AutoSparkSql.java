@@ -36,7 +36,12 @@ public class AutoSparkSql {
         SparkConf conf = new SparkConf().setAppName(appId);
         conf.set("spark.memory.storageFraction", "0.4");
         JavaSparkContext jsc = new JavaSparkContext(conf);
-        SparkSession spark = SparkSession.builder().appName(appId).config("spark.sql.inMemoryColumnarStorage.batchSize", "1000000").config("spark.sql.shuffle.partitions", "150").config("spark.sql.autoBroadcastJoinThreshold", "31457280").getOrCreate();
+        SparkSession spark = SparkSession.builder().
+                appName(appId).
+                config("spark.sql.inMemoryColumnarStorage.batchSize", "1000000").
+                config("spark.sql.shuffle.partitions", "150").
+                config("spark.sql.autoBroadcastJoinThreshold", "31457280").
+                getOrCreate();
 
         System.out.println("spark 配置信息：\n" + spark.conf().getAll());
         spark.sparkContext().setCheckpointDir(ofrAllocationConf.hdfs + "/check");
@@ -69,10 +74,10 @@ public class AutoSparkSql {
     }
     public static void testMybatis()
     {
-        SparkSQLMapper sPARK_SQLMapper = (SparkSQLMapper)SpringContextTool.context.getBean("sPARK_SQLMapper");
+        SparkSQLMapper sPARK_SQLMapper = (SparkSQLMapper)SpringContextTool.context.getBean("sparkSQLMapper");
         List<SparkSQL> spark_sqls = sPARK_SQLMapper.selectByAppId(Long.valueOf(151L));
 
-        SparkRoleMapper sparkRoleMapper = (SparkRoleMapper)SpringContextTool.context.getBean("sPARK_ROLEMapper");
+        SparkRoleMapper sparkRoleMapper = (SparkRoleMapper)SpringContextTool.context.getBean("sparkRoleMapper");
         List<SparkRole> spark_roles = sparkRoleMapper.selectAll();
         for (SparkRole r : spark_roles) {
             System.out.println(">>>" + r.toString());
